@@ -3,24 +3,22 @@ package asavageiv.practice;
 import java.util.List;
 
 public class BinarySearch {
-
-	public static int binarySearch(List<Integer> sortedList, int obj) {
-		int start = 0;
-		int end = sortedList.size();
-		int index = (start + end) / 2;
+	public static int binarySearch(List<Integer> list, int val) {
+		int low = 0;
+		int high = list.size() - 1;
 		
-		while (start < end) {
-			int curVal = sortedList.get(index);
-			if (curVal == obj) {
-				return index;
-			} else if (obj < curVal) {
-				end = index - 1;
+		while (low < high) {
+			int middle = (low + high) / 2;
+			int midVal = list.get(middle);
+			if (midVal == val) {
+				return middle;
+			} else if (midVal < val) {
+				low = middle + 1;
 			} else {
-				start = index + 1;
+				high = middle - 1;
 			}
-			index = (start + end) / 2;
 		}
 		
-		return -1*index - 1;
+		return -(low + 1);
 	}
 }
