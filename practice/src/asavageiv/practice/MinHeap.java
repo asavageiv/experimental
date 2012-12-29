@@ -4,8 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MinHeap {
-
-	private List<Integer> heap = new ArrayList<Integer>();
+	List<Integer> heap = new ArrayList<Integer>();
 	
 	public MinHeap() {}
 	
@@ -21,61 +20,39 @@ public class MinHeap {
 		bubbleDown(0);
 		return val;
 	}
-	
-	private void bubbleDown(int index) {
-		if (index >= heap.size()) {
+
+	private void bubbleDown(int i) {
+		if (i >= heap.size() - 1) {
 			return;
 		}
-		int left = left(index);
-		int right = right(index);
-		int lightestChild = index;
+		int lightestChild = i;
 		
-		if (left < heap.size()) {
-			if (heap.get(left) < heap.get(index)) {
-				lightestChild = left;
-			}
-		}
-		if (right < heap.size()) {
-			if (heap.get(right) < heap.get(lightestChild)) {
-				lightestChild = right;
+		for (int j = 2*i; j < 2*i + 2; j++) {
+			if (j < heap.size() && heap.get(j) < heap.get(lightestChild)) {
+				lightestChild = j;
 			}
 		}
 		
-		if (lightestChild != index) {
-			swap(index, lightestChild);
+		if (lightestChild != i) {
+			swap(i, lightestChild);
 			bubbleDown(lightestChild);
 		}
 	}
-	
-	private void bubbleUp(int index) {
-		if (index <= 0) {
+
+	private void bubbleUp(int i) {
+		if (i <= 0) {
 			return;
 		}
-		int parentInd = parent(index);
-		if (heap.get(index) < heap.get(parentInd)) {
-			swap(index, parentInd);
+		int parentInd = i / 2;
+		if (heap.get(i) < heap.get(parentInd)) {
+			swap(i, parentInd);
 			bubbleUp(parentInd);
 		}
 	}
-	
-	private void swap(int ind1, int ind2) {
-		int tmp = heap.get(ind1);
-		heap.set(ind1, heap.get(ind2));
-		heap.set(ind2, tmp);
-	}
-	
-	private int parent(int index) {
-		if (index == 0) {
-			return -1;
-		}
-		return index / 2;
-	}
-	
-	private int left(int index) {
-		return index * 2;
-	}
-	
-	private int right(int index) {
-		return index * 2 + 1;
+
+	private void swap(int i, int j) {
+		int tmp = heap.get(i);
+		heap.set(i, heap.get(j));
+		heap.set(j, tmp);
 	}
 }
