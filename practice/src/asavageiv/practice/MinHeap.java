@@ -48,13 +48,13 @@ public class MinHeap {
 	}
 	
 	private void bubbleUp(int index) {
-		while (index > 0) {
-			int parentInd = parent(index);
-			if (heap.get(index) < heap.get(parentInd)) {
-				swap(index, parentInd);
-			} else {
-				return;
-			}
+		if (index <= 0) {
+			return;
+		}
+		int parentInd = parent(index);
+		if (heap.get(index) < heap.get(parentInd)) {
+			swap(index, parentInd);
+			bubbleUp(parentInd);
 		}
 	}
 	

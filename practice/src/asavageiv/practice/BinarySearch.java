@@ -7,7 +7,7 @@ public class BinarySearch {
 		int low = 0;
 		int high = list.size() - 1;
 		
-		while (low < high) {
+		while(low <= high) {
 			int middle = (low + high) / 2;
 			int midVal = list.get(middle);
 			if (midVal == val) {
@@ -21,4 +21,5 @@ public class BinarySearch {
 		
 		return -(low + 1);
 	}
+
 }

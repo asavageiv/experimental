@@ -17,6 +17,12 @@ public class BinarySearchTest {
 		l.add(5);
 		assertEquals(new Long(-1), new Long(BinarySearch.binarySearch(l, 1)));
 		assertEquals(new Long(-2), new Long(BinarySearch.binarySearch(l, 6)));
+		
+		l.add(10);
+		
+		assertEquals(-1, BinarySearch.binarySearch(l, 1));
+		assertEquals(-2, BinarySearch.binarySearch(l, 6));
+		assertEquals(-3, BinarySearch.binarySearch(l, 11));
 	}
 
 }
