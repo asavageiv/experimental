@@ -13,12 +13,30 @@ public class MinHeap {
 		bubbleUp(heap.size() - 1);
 	}
 	
+	private void bubbleUp(int i) {
+		if (i <= 0) {
+			return;
+		}
+		
+		int parentInd = i / 2;
+		if (heap.get(i) < heap.get(parentInd)) {
+			swap(i, parentInd);
+			bubbleUp(parentInd);
+		}
+	}
+
+	private void swap(int i, int parentInd) {
+		int tmp = heap.get(i);
+		heap.set(i, heap.get(parentInd));
+		heap.set(parentInd, tmp);
+	}
+
 	public int remove() {
-		int val = heap.get(0);
-		swap(0, heap.size() - 1);
+		int res = heap.get(0);
+		heap.set(0, heap.get(heap.size() - 1));
 		heap.remove(heap.size() - 1);
-		bubbleDown(0);
-		return val;
+	    bubbleDown(0);
+	    return res;
 	}
 
 	private void bubbleDown(int i) {
@@ -37,22 +55,5 @@ public class MinHeap {
 			swap(i, lightestChild);
 			bubbleDown(lightestChild);
 		}
-	}
-
-	private void bubbleUp(int i) {
-		if (i <= 0) {
-			return;
-		}
-		int parentInd = i / 2;
-		if (heap.get(i) < heap.get(parentInd)) {
-			swap(i, parentInd);
-			bubbleUp(parentInd);
-		}
-	}
-
-	private void swap(int i, int j) {
-		int tmp = heap.get(i);
-		heap.set(i, heap.get(j));
-		heap.set(j, tmp);
 	}
 }

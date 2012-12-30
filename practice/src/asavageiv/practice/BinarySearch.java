@@ -3,11 +3,12 @@ package asavageiv.practice;
 import java.util.List;
 
 public class BinarySearch {
+
 	public static int binarySearch(List<Integer> list, int val) {
 		int low = 0;
 		int high = list.size() - 1;
 		
-		while(low <= high) {
+		while (low <= high) {
 			int middle = (low + high) / 2;
 			int midVal = list.get(middle);
 			if (midVal == val) {
@@ -21,5 +22,4 @@ public class BinarySearch {
 		
 		return -(low + 1);
 	}
-
 }
